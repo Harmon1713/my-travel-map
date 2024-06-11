@@ -1,0 +1,14 @@
+.country, .state {
+	stroke: white;
+	stroke-width: 0.5px;
+  }
+  
+  #tooltip {
+	position: absolute;
+	display: none;
+	background: white;
+	border: 1px solid black;
+	padding: 5px;
+	z-index: 10;
+  }
+  
