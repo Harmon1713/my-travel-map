@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Map</title>
   <link rel="stylesheet" href="css/custom-map.css">
+  <title>Interactive World Map</title>
 </head>
 <body>
-  <div id="map-container">
-    <div id="map" style="height: 600px; width: 960px;"></div>
-    <div id="tooltip"></div>
+  <div id="header">
+    <h1>My Travel Map</h1>
+    <p>Hover over a country to see pictures from my travel scrapbook! <br> To see a full list of countries and territories visited, click the list in the bottom left corner.</p>
   </div>
+  <div id="map-container">
+    <div id="map"></div>
+    <div id="zoom-controls">
+      <button id="zoom-in">+</button>
+      <button id="zoom-out">-</button>
+    </div>
+  </div>
+  <div id="tooltip"></div>
   <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="https://unpkg.com/topojson@3"></script>
   <script src="js/custom-map.js"></script>
 </body>
 </html>
