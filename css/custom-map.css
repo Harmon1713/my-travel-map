@@ -43,6 +43,11 @@ body {
   height: 100%;
   border: 1px solid #333;
   background-color: lightblue; /* Ocean color */
+  cursor: grab;
+}
+
+#map:active {
+  cursor: grabbing;
 }
 
 #tooltip {
