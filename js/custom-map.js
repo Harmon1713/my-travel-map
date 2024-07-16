@@ -31,12 +31,12 @@ const visitedCountries = {
   "The Bahamas": "lightcoral",
   "Belize": "maroon",
   "Argentina": "peru",
-  "Uruguay": "tan",
+  "Uruguay": "neonpink",
   "Colombia": "lightgreen",
   "Paraguay": "crimson",
   "Turkey": "orchid",
   "Spain": "slateblue",
-  "United Republic of Tanzania": "lightsteelblue"
+  "United Republic of Tanzania": "electriclime"
 };
 
 const smallCountries = [
@@ -70,22 +70,22 @@ Promise.all([
           const imageExists = new Image();
           imageExists.onload = function () {
             d3.select("#tooltip")
-              .style("left", (event.pageX + 10) + "px")
-              .style("top", (event.pageY - 20) + "px")
+              .style("left", Math.min(event.pageX + 10, width - 210) + "px")
+              .style("top", Math.min(event.pageY - 20, height - 110) + "px")
               .style("display", "block")
               .html(`<strong>${countryName}</strong><br><img src="${imagePath}" class="large-img">`);
           };
           imageExists.onerror = function () {
             if (visited) {
               d3.select("#tooltip")
-                .style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 20) + "px")
+                .style("left", Math.min(event.pageX + 10, width - 210) + "px")
+                .style("top", Math.min(event.pageY - 20, height - 110) + "px")
                 .style("display", "block")
                 .html(`<strong>${countryName}</strong><br>Picture coming soon!<br><img src="images/pic_to_come.png" class="normal-img">`);
             } else {
               d3.select("#tooltip")
-                .style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 20) + "px")
+                .style("left", Math.min(event.pageX + 10, width - 210) + "px")
+                .style("top", Math.min(event.pageY - 20, height - 110) + "px")
                 .style("display", "block")
                 .html(`<strong>${countryName}</strong><br>Not yet visited`);
             }
