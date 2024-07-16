@@ -21,7 +21,7 @@ const visitedCountries = {
   "Guatemala": "orange",
   "Haiti": "purple",
   "Dominican Republic": "teal",
-  "Cuba": "pink",
+  "Cuba": "darkorange",
   "Honduras": "cyan",
   "El Salvador": "lime",
   "Costa Rica": "magenta",
@@ -31,12 +31,12 @@ const visitedCountries = {
   "The Bahamas": "lightcoral",
   "Belize": "maroon",
   "Argentina": "peru",
-  "Uruguay": "neonpink",
+  "Uruguay": "pink",
   "Colombia": "lightgreen",
   "Paraguay": "crimson",
   "Turkey": "orchid",
   "Spain": "slateblue",
-  "United Republic of Tanzania": "electriclime"
+  "United Republic of Tanzania": "orangered"
 };
 
 const smallCountries = [
@@ -131,7 +131,7 @@ Promise.all([
     .attr("id", "small-list")
     .style("margin-top", "10px");
 
-  const columnCount = 6;
+  const columnCount = 2;
   normalList.selectAll("div")
     .data(visitedCountryNames.filter(d => !smallCountries.includes(d)))
     .enter()
@@ -177,6 +177,13 @@ Promise.all([
 
   d3.select("#visited-list").on("click", function (event) {
     event.stopPropagation();
+  });
+
+  svgContainer.on("mousemove", function (event) {
+    const isHoveringCountry = d3.selectAll("path.country:hover").size() > 0;
+    if (!isHoveringCountry) {
+      d3.select("#tooltip").style("display", "none");
+    }
   });
 
   svgContainer.on("click", function () {
