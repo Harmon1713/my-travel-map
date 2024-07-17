@@ -1,17 +1,15 @@
 # my-travel-map
 
-This project is an interactive travel map that highlights countries and states you have visited. It uses D3.js and TopoJSON to render the map, with custom hover functionality to display images and information about each visited location.
+This project is an interactive travel map that highlights countries you have visited. It uses D3.js and GeoJSON to render the map, with custom hover functionality to display images and information about each visited location.
 
 ## Features
-
-- Interactive world map with country and state (USA & Brazil) boundaries
-- Highlights visited countries and states
+- Interactive world map with country boundaries
+- Highlights visited countries
 - Displays images and information on hover
 
 ## Setup
 
 ### Prerequisites
-
 - Basic knowledge of HTML, CSS, and JavaScript
 - Git and GitHub account
 - Text editor or IDE (e.g., VS Code)
@@ -25,7 +23,7 @@ This project is an interactive travel map that highlights countries and states y
    ```
 
 2. **Add your images:**
-	- Upload images for each visited country and state to the appropriate folder (e.g., images/usa/CA.jpg for California, images/brazil/SP.jpg for São Paulo).
+	- Upload images for each visited country to the appropriate folder (e.g., images/United States of America.jpg for USA, images/Canada.jpg for Canada).
 
 3. **Customize image paths:**
 	- Update the image paths in the custom-map.js file to point to your images.
@@ -45,7 +43,7 @@ This project is an interactive travel map that highlights countries and states y
 ### Customization
 
 1. Update visited locations:
-	- Edit the `visitedCountries`, `visitedStatesUSA`, and `visitedStatesBrazil` arrays in `custom-map.js` to include the countries and states you have visited.
+	- Edit the `visitedCountries` and `smallCountries` arrays in `custom-map.js` to include the countries and territories you have visited.
 2. Change styles:
 	- Modify the `custom-map.css` file to change the appearance of the map and tooltip.
 
@@ -65,7 +63,6 @@ This project is an interactive travel map that highlights countries and states y
 
 ## Acknowledgements
 - [D3.js](https://d3js.org/) - A JavaScript library for producing dynamic, interactive data visualizations in web browsers.
-- [TopoJSON](https://github.com/topojson/topojson) - An extension of GeoJSON that encodes topology and reduces the size of geographic data.
-- [PublicaMundi GeoJSON](https://github.com/PublicaMundi/MappingAPI) - Provides GeoJSON data for various geographic regions.
-- [Click That Hood](https://github.com/codeforamerica/click_that_hood) - Provides GeoJSON data for regions like Brazil states.
+- [GeoJSON](https://github.com/geojson) - A format for encoding a variety of geographic data structures.
+- [Johan](https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json) - Provides GeoJSON data for world countries.
 
