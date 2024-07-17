@@ -69,26 +69,122 @@ Promise.all([
           const imagePath = `images/${countryName}.jpg`;
           const imageExists = new Image();
           imageExists.onload = function () {
-            d3.select("#tooltip")
-              .style("left", Math.min(event.pageX + 10, width - 210) + "px")
-              .style("top", Math.min(event.pageY - 20, height - 110) + "px")
+            const tooltip = d3.select("#tooltip")
+              .html(`<strong>${countryName}</strong><br><img src="${imagePath}" class="large-img">`)
               .style("display", "block")
-              .html(`<strong>${countryName}</strong><br><img src="${imagePath}" class="large-img">`);
+              .style("width", "220px")
+              .style("height", "auto"); // Remove fixed height
+      
+            const tooltipWidth = 220; // Fixed width for the tooltip
+            const tooltipHeight = tooltip.node().offsetHeight; // Get the height of the tooltip
+            const cursorX = event.pageX;
+            const cursorY = event.pageY;
+            const mapWidth = svgContainer.node().getBoundingClientRect().width;
+            const mapHeight = svgContainer.node().getBoundingClientRect().height;
+      
+            let left, top;
+      
+            // Determine horizontal position
+            if (cursorX < mapWidth / 2) {
+              left = cursorX + 5;
+            } else {
+              left = cursorX - tooltipWidth - 5;
+            }
+      
+            // Determine vertical position
+            if (cursorY < mapHeight / 3) {
+              top = cursorY + 5;
+            } else if (cursorY > 2 * mapHeight / 3) {
+              top = cursorY - tooltipHeight - 5;
+            } else {
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            }
+      
+            // Adjust for the six areas
+            if (cursorX < mapWidth / 2 && cursorY < mapHeight / 3) { // Top left
+              left = cursorX + 5;
+              top = cursorY + 5;
+            } else if (cursorX >= mapWidth / 2 && cursorY < mapHeight / 3) { // Top right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY + 5;
+            } else if (cursorX < mapWidth / 2 && cursorY > 2 * mapHeight / 3) { // Bottom left
+              left = cursorX + 5;
+              top = cursorY - tooltipHeight - 5;
+            } else if (cursorX >= mapWidth / 2 && cursorY > 2 * mapHeight / 3) { // Bottom right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY - tooltipHeight - 5;
+            } else if (cursorX < mapWidth / 2) { // Middle left
+              left = cursorX + 5;
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            } else { // Middle right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            }
+      
+            tooltip.style("left", `${left}px`)
+              .style("top", `${top}px`);
           };
           imageExists.onerror = function () {
+            const tooltip = d3.select("#tooltip");
             if (visited) {
-              d3.select("#tooltip")
-                .style("left", Math.min(event.pageX + 10, width - 210) + "px")
-                .style("top", Math.min(event.pageY - 20, height - 110) + "px")
-                .style("display", "block")
-                .html(`<strong>${countryName}</strong><br>Picture coming soon!<br><img src="images/pic_to_come.png" class="normal-img">`);
+              tooltip.html(`<strong>${countryName}</strong><br>Picture coming soon!<br><img src="images/pic_to_come.png" class="normal-img">`)
+                .style("width", "110px")
+                .style("height", "auto"); // Adjust height based on content
             } else {
-              d3.select("#tooltip")
-                .style("left", Math.min(event.pageX + 10, width - 210) + "px")
-                .style("top", Math.min(event.pageY - 20, height - 110) + "px")
-                .style("display", "block")
-                .html(`<strong>${countryName}</strong><br>Not yet visited`);
+              tooltip.html(`<strong>${countryName}</strong><br>Not yet visited`)
+                .style("width", "110px")
+                .style("height", "auto"); // Adjust height based on content
             }
+            tooltip.style("display", "block");
+      
+            const tooltipWidth = 220; // Fixed width for the tooltip
+            const tooltipHeight = tooltip.node().offsetHeight; // Get the height of the tooltip
+            const cursorX = event.pageX;
+            const cursorY = event.pageY;
+            const mapWidth = svgContainer.node().getBoundingClientRect().width;
+            const mapHeight = svgContainer.node().getBoundingClientRect().height;
+      
+            let left, top;
+      
+            // Determine horizontal position
+            if (cursorX < mapWidth / 2) {
+              left = cursorX + 5;
+            } else {
+              left = cursorX - tooltipWidth - 5;
+            }
+      
+            // Determine vertical position
+            if (cursorY < mapHeight / 3) {
+              top = cursorY + 5;
+            } else if (cursorY > 2 * mapHeight / 3) {
+              top = cursorY - tooltipHeight - 5;
+            } else {
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            }
+      
+            // Adjust for the six areas
+            if (cursorX < mapWidth / 2 && cursorY < mapHeight / 3) { // Top left
+              left = cursorX + 5;
+              top = cursorY + 5;
+            } else if (cursorX >= mapWidth / 2 && cursorY < mapHeight / 3) { // Top right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY + 5;
+            } else if (cursorX < mapWidth / 2 && cursorY > 2 * mapHeight / 3) { // Bottom left
+              left = cursorX + 5;
+              top = cursorY - tooltipHeight - 5;
+            } else if (cursorX >= mapWidth / 2 && cursorY > 2 * mapHeight / 3) { // Bottom right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY - tooltipHeight - 5;
+            } else if (cursorX < mapWidth / 2) { // Middle left
+              left = cursorX + 5;
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            } else { // Middle right
+              left = cursorX - tooltipWidth - 5;
+              top = cursorY - tooltipHeight / 4; // Adjusted to be half the distance from the cursor vertically
+            }
+      
+            tooltip.style("left", `${left-10}px`)
+              .style("top", `${top}px`);
           };
           imageExists.src = imagePath;
           d3.select(this).style("fill", visited ? d3.rgb(visited).brighter() : "darkgray");
