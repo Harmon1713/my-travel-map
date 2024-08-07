@@ -2,7 +2,7 @@
 
 This project is an interactive travel map that highlights countries you have visited. It uses D3.js and GeoJSON to render the map, with custom hover functionality to display images and information about each visited location.
 
-[See the GitHub Page here](https://harmon1713.github.io/my-travel-map/)
+[See the GitHub Page here](https://harmon1713.github.io/my-travel-map/) ⬅
 
 ## Features
 - Interactive world map with country boundaries
